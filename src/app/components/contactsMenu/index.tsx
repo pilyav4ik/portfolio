@@ -36,8 +36,8 @@ export default function index({ closeMenu }: any) {
                   <div className="text-left inline-grid content-start text-2xl" itemScope itemType="http://schema.org/Organization">
                     <p className="flex items-start -mx-2 py-4">
                       <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mt-1 mx-2 text-blue-500 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                        <path stroke-linecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path stroke-linecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
 
                       <span className="mx-2 text-white truncate w-72 dark:text-gray-400" itemProp="address" itemScope itemType="http://schema.org/PostalAddress">

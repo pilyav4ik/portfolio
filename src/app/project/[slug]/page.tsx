@@ -40,13 +40,13 @@ export default async function Project({ params }: any) {
                 heroMediaUrl={projectMediaUrl}
             />
             <ProjectInfo project={project} />
-            <div className="grid grid-cols-1 gap-10 pt-44 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-10 pt-44 md:grid-cols-2 px-10">
             {project.images.map((image: any, index:any) => (
-                <div className="h-auto max-w-full rounded-lg" key={index}>
+                <div className="h-auto max-w-full" key={index}>
                 <Image
                 src={image.url}
                 alt={image.alt}
-                className=""
+                className="rounded-[2vw]"
                 key={image.id}
                 width={1000}
                 height={1000}

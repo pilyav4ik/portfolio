@@ -8,7 +8,7 @@ export default function index({index, title, previewImageURL, services, setModal
         <div className='m-0 md:m-5 hover:m-8 ease-in-out duration-300 cursor-none' onMouseEnter={() => { setModal({ active: true, index }) }} onMouseLeave={() => { setModal({ active: false, index }) }}>
             
             <Image 
-                    src={`${previewImageURL}`}
+                    src={`/images/${previewImageURL}.webp`}
                     width={1000}
                     height={0}
                     alt="image"

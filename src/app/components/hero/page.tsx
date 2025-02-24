@@ -3,6 +3,9 @@ import InfiniteScrollingText from '../common/infiniteScrollingText/page';
 
 export default async function Home() {
 
+    const tags = ["Next.js", "TypeScript", "GSAP", "React"];
+
+
     return (
         <main className={styles.main}>
             <video preload='true' autoPlay no-controls='true' loop playsInline muted>
