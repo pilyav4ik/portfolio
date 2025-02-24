@@ -1,0 +1,30 @@
+model Project {
+  id                Int               @id @default(autoincrement())
+  title             String?
+  slug              String            @unique
+  previewImageURL   String?
+  headerDescription String?
+  headerTitle       String?
+  heroMediaUrl      String?
+  imageInHero       Boolean           @default(true)
+  url               String?
+  metadesc          String?
+  metatitle         String?
+  images            ProjectImage[]
+  services          ProjectServices[]
+}
+
+model ProjectImage {
+  id        Int     @id @default(autoincrement())
+  url       String
+  alt       String
+  projectId Int
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model ProjectServices {
+  id        Int     @id @default(autoincrement())
+  service   String
+  projectId Int
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}

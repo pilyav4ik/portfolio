@@ -1,0 +1,40 @@
+.main {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  video {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.main img {
+  object-fit: cover;
+}
+
+.sliderContainer {
+  position: absolute;
+  bottom: 0;
+}
+
+.slider {
+  position: relative;
+  white-space: nowrap;
+}
+
+.slider p {
+  position: relative;
+  margin: 0px;
+  color: black;
+  font-size: 8vw;
+  font-weight: 500;
+  padding-right: 50px;
+}
+
+.slider p:nth-of-type(2) {
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
