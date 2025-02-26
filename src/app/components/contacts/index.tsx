@@ -6,6 +6,7 @@ import { useScroll, motion, useTransform, useSpring, AnimatePresence } from 'fra
 import Rounded from '../common/RoundedButton';
 import Stairs from '../stairs';
 import ContactsMenu from '../contactsMenu';
+import Link from 'next/link';
 
 export default function Contacts({ openMenu }: any) {
     const container = useRef(null);
@@ -52,19 +53,19 @@ export default function Contacts({ openMenu }: any) {
                         </motion.div>
                     </div>
                     <div className={styles.nav}>
-                        <a href="tel:+48505862433">
+                        <a href="tel:+491763972959">
                             <Rounded>
-                                <p>+48 505 86 24 33</p>
+                                <p>+49 17 63 97 29 59</p>
                             </Rounded>
                         </a>
-                        <a href="https://wa.me/48505862433" target='_blank'>
+                        <a href="https://wa.me/491763972959" target='_blank'>
                             <Rounded>
                                 <p>WhatsApp</p>
                             </Rounded>
                         </a>
-                        <a href="mailto:info@sviplab.eu" target='_blank'>
+                        <a href="mailto:info.sviplab@gmail.com" target='_blank'>
                         <Rounded>
-                            <p>info@sviplab.eu</p>
+                            <p>info.sviplab@gmail.com</p>
                             </Rounded>
                         </a>
                     </div>
@@ -84,9 +85,8 @@ export default function Contacts({ openMenu }: any) {
                                 <h3>socials</h3>
                                 <p>Awwwards</p>
                             </span>
-                            <p>Instagram</p>
-                            <p>Dribbble</p>
-                            <p>Linkedin</p>
+                            <p><Link href={"https://www.instagram.com/sviplab.team/"}>Instagram</Link></p>
+                           
                         </div>
                     </div>
                 </div>

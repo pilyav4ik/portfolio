@@ -1,9 +1,11 @@
-import { motion } from "framer-motion";
-import Curve from "@/components/common/curve"
+import TransitionPage from "./transition";
+
 export default function Template({ children }: { children: React.ReactNode }) {
-    return (<>
-    
+  return (
+    <>
+      <TransitionPage>
         {children}
+      </TransitionPage>
     </>
 
   );

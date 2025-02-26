@@ -177,7 +177,7 @@ const Index = ({ closeMenu }: Props) => {
                     <ul className="grid w-full gap-6 md:grid-cols-3">
                         <CheckboxField id="web" label="Web dev" checked={formData.interestedIn.web} onChange={handleChange} />
                         <CheckboxField id="mobile" label="Mobile dev" checked={formData.interestedIn.mobile} onChange={handleChange} />
-                        <CheckboxField id="qa" label="QA" checked={formData.interestedIn.qa} onChange={handleChange} />
+                        <CheckboxField id="qa" label="Online marketing" checked={formData.interestedIn.qa} onChange={handleChange} />
                     </ul>
                 </div>
             </div>

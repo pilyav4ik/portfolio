@@ -12,6 +12,7 @@ export default function index({index, title, previewImageURL, services, setModal
                     width={1000}
                     height={0}
                     alt="image"
+                    className='rounded-3xl'
                     />
             <div className='flex items-center pt-5'>
                 <h2 className='pr-3 text-xl font-bold'>{title}</h2>
