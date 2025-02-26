@@ -6,6 +6,7 @@ import AllProjectsLink from "@/app/components/allProjectsLink";
 import NotFound from "@/app/not-found";
 import Image from "next/image";
 import type { Metadata, ResolvingMetadata } from 'next'
+import AnimatedImage from "@/app/components/AnimatedImage";
 
 export const revalidate = 360  // revalidate at most every day
 
@@ -41,22 +42,11 @@ export default async function Project({ params }: any) {
             />
             <ProjectInfo project={project} />
             <div className="grid grid-cols-1 gap-10 pt-44 md:grid-cols-2 px-10">
-            {project.images.map((image: any, index:any) => (
-                <div className="h-auto max-w-full" key={index}>
-                <Image
-                src={image.url}
-                alt={image.alt}
-                className="rounded-[2vw]"
-                key={image.id}
-                width={1000}
-                height={1000}
-              />
-
-                </div>
-            ))}
-                </div>
-
-                <AllProjectsLink />
+                {project.images.map((image: any, index: any) => (
+                    <AnimatedImage key={image.id} src={image.url} alt={image.alt} />
+                ))}
+            </div>
+            <AllProjectsLink />
         </>
     );
 }
