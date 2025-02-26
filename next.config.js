@@ -26,8 +26,7 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
-  },
-  matcher: ["/admin/:path*"], // Применять только к /admin
+  }
 }
 
 module.exports = nextConfig
