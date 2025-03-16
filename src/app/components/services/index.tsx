@@ -10,7 +10,7 @@ export default function Services() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const faqs = [
-    {
+    /*{
       title: "Design",
       text: [
         "Everything starts from design! We visualize web and mobile apps, ensuring an intuitive and visually appealing design that helps to achieve your business goals.",
@@ -19,7 +19,7 @@ export default function Services() {
         "Whether it's wireframes, prototypes, or final visual designs, our team is dedicated to bringing your vision to life and setting a strong foundation for your digital products."
       ],
       active: false,
-    },
+    },*/
     {
       title: "Web development",
       text: [
