@@ -19,6 +19,12 @@ const nextConfig = {
         hostname: 'asset.cloudinary.com',
         port: '',
         pathname: '/djsx9wdej/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'zapqfthntvtsgplccknq.supabase.co',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

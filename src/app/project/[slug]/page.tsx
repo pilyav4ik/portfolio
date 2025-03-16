@@ -7,66 +7,93 @@ import NotFound from "@/app/not-found";
 import Image from "next/image";
 import type { Metadata, ResolvingMetadata } from 'next'
 import AnimatedImage from "@/app/components/AnimatedImage";
+import { createClient } from "@/app/utils/supabase/server";
 
 export const revalidate = 360  // revalidate at most every day
 
 export default async function Project({ params }: any) {
-    const { slug } = params;
+const supabase = await createClient();
+const { slug } = params;
 
-    const project:any = await prisma.project.findFirst({
-        where: {
-            slug: slug
-        },
-        include: {
-            images: true
-        }
-    });
+const { data: project } = await supabase.from("projects").select('*').eq('slug', slug);
 
-    if (!project) {
-        return(<NotFound/>);
-    }
+if (!project || project.length === 0) {
+    return <NotFound />;
+}
 
-    // Ensure title is a string
-    const projectTitle = project.title || "Untitled";
-    const projectLink = project.url;
-    const projectMediaSwitcher = project.imageInHero;
-    const projectMediaUrl = project.heroMediaUrl;
-    const projectImages = project.images;
+const projectData = project[0]; 
+const images = typeof projectData.images === "string" ? JSON.parse(projectData.images) : projectData.images;
 
-    return (
-        <>
-            <ProjectHero hero={projectTitle}
-                projectRemoteUrl={projectLink}
-                imageInHero={projectMediaSwitcher}
-                heroMediaUrl={projectMediaUrl}
+return (
+    <>
+        <ProjectHero 
+            hero={projectData.headerTitle}
+            projectRemoteUrl={projectData.url}
+            imageInHero={projectData.imageInHero}
+            heroMediaUrl={projectData.heroMediaUrl}
+        />
+
+<div className="image-gallery pt-36">
+  {Array.isArray(images) && images.length > 0 ? (
+    images.map((img: { url: string; text: string }, index: number) => (
+      img.url && (
+        <div key={index} className="w-full flex flex-col sm:flex-row">
+          <div className="p-2 md:p-5 w-full sm:w-1/2">
+            <Image
+              src={img.url}
+              alt={`Project image ${index + 1}`}
+              width={1000}
+              height={400}
+              className="rounded-3xl w-full"
             />
-            <ProjectInfo project={project} />
-            <div className="grid grid-cols-1 gap-10 pt-44 md:grid-cols-2 px-10">
-                {project.images.map((image: any, index: any) => (
-                    <AnimatedImage key={image.id} src={image.url} alt={image.alt} />
-                ))}
-            </div>
-            <AllProjectsLink />
-        </>
-    );
+          </div>
+          <div
+            className={`p-2 md:p-5 w-full sm:w-1/2 ${
+              index % 2 === 0 ? "sm:order-first" : "sm:order-last"
+            }`}
+          >
+            {img.text}
+          </div>
+        </div>
+      )
+    ))
+  ) : (
+    <p>No images available</p>
+  )}
+</div>
+
+
+            
+        <AllProjectsLink />
+    </>
+);
 }
   
-  export async function generateMetadata(
+export async function generateMetadata(
     { params }: any,
     parent: ResolvingMetadata
   ): Promise<Metadata> {
-    // read route params
+    const supabase = await createClient();
     const { slug } = params;
-
-    const project:any = await prisma.project.findFirst({
-        where: {
-            slug: slug
-        }
-    });
-   
-    return {
-        title: project?.metatitle + " | SVIPLAB Development company",
-        description: project?.metadesc || "Trust your project to our app development company.",
-        
+    const { data: project } = await supabase.from("projects").select('*').eq('slug', slug);
+  
+    if (!project || project.length === 0) {
+      return {
+        title: "Проект не найден",
+        description: "Такого проекта не существует",
+      };
     }
+  
+    const projectData = project[0];
+  
+    return {
+      title: projectData.metaTitle || projectData.headerTitle || "Проект",
+      description: projectData.metaDescription || "Описание недоступно",
+      openGraph: {
+        title: projectData.metaTitle || projectData.headerTitle,
+        description: projectData.metaDescription || "Описание недоступно",
+        images: projectData.imageInHero ? [{ url: projectData.imageInHero }] : [],
+      },
+    };
   }
+  

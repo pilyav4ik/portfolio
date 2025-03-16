@@ -1,20 +1,20 @@
 import { Header } from "../components/header";
 import Projects from "./projects.client";
-import prisma from "@/app/lib/db";
+import { createClient } from "../utils/supabase/server";
 
 export const revalidate = 360  // revalidate at most every day
 
 export default async function ProjectsServer() {
-  const project = await prisma.project.findMany({
-    include: {
-      services: {
-      }
-    }
-  });
+  const supabase = await createClient();
+  const { data: projects, error } = await supabase.from("projects").select().order('id', { ascending: false });
 
+
+  if (error) {
+    console.error("Error during data request:", error.message);
+  }  
   return (<>
     <Header />
     
-   <Projects projects={project} />
-  </>);
+    <Projects projects={projects || []} />
+    </>);
 }
