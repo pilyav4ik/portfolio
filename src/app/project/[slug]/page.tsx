@@ -23,6 +23,7 @@ if (!project || project.length === 0) {
 
 const projectData = project[0]; 
 const images = typeof projectData.images === "string" ? JSON.parse(projectData.images) : projectData.images;
+const technologies = projectData.technologies || [];
 
 return (
     <>
@@ -49,7 +50,7 @@ return (
           </div>
           <div
             className={`p-2 md:p-5 w-full sm:w-1/2 ${
-              index % 2 === 0 ? "sm:order-first" : "sm:order-last"
+              index % 2 === 0 ? "flex items-end sm:order-first" : "sm:order-last"
             }`}
           >
             {img.text}
@@ -62,6 +63,18 @@ return (
   )}
 </div>
 
+
+
+{technologies.length > 0 && (
+        <div className="flex justify-end items-center p-5">
+          <h2 className="font-bold pr-7">Technologies:</h2>
+          <div className="flex">
+            {technologies.map((tech: string, index: number) => (
+              <span key={index} className="flex-1 px-2 first:pl-0 last:pr-0">{tech}</span>
+            ))}
+          </div>
+        </div>
+      )}
 
             
         <AllProjectsLink />
