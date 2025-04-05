@@ -5,38 +5,39 @@ import styles from './style.module.scss';
 import gsap from 'gsap';
 import Magnetic from '../magnetic';
 
-
-export default function index({ children, backgroundColor, backgroundColorHover, onClickAction, ...attributes }: any) {
-    const circle = useRef(null);
-    let timeline: any = useRef(null); // Use gsap.core.Timeline type
-
-    let timeoutId: any = null;
+export default function Index({ children, backgroundColor, backgroundColorHover, onClickAction, ...attributes }: any) {
+    const circle = useRef<HTMLDivElement>(null);
+    let timeline = useRef<gsap.core.Timeline | null>(null);
+    let timeoutId: NodeJS.Timeout | null = null;
 
     useEffect(() => {
-        timeline.current = gsap.timeline({ paused: true });
-        timeline.current
-            .to(circle.current, { top: "-25%", width: "150%", duration: 0.4, ease: "power3.in" }, "enter")
-            .to(circle.current, { top: "-150%", width: "125%", duration: 0.25 }, "exit");
+        if (circle.current) { 
+            timeline.current = gsap.timeline({ paused: true });
+            timeline.current
+                .to(circle.current, { top: "-25%", width: "150%", duration: 0.4, ease: "power3.in" }, "enter")
+                .to(circle.current, { top: "-150%", width: "125%", duration: 0.25 }, "exit");
+        }
     }, []);
 
     const manageMouseEnter = () => {
         if (timeoutId) clearTimeout(timeoutId);
-        timeline!.current.tweenFromTo('enter', 'exit'); // Use non-null assertion operator (!) here
+        timeline.current?.tweenFromTo('enter', 'exit');
     };
 
     const manageMouseLeave = () => {
         timeoutId = setTimeout(() => {
-            timeline!.current.play(); // Use non-null assertion operator (!) here
+            timeline.current?.play();
         }, 300);
     };
 
     return (
         <Magnetic>
-            <div className={styles.roundedButton + " "} style={{ overflow: "hidden" }}
+            <div className={styles.roundedButton} style={{ overflow: "hidden" }}
                 onMouseEnter={manageMouseEnter}
                 onMouseLeave={manageMouseLeave}
                 onClick={onClickAction}
                 {...attributes}>
+                <div ref={circle} className={styles.circle} />
                 {children}
             </div>
         </Magnetic>

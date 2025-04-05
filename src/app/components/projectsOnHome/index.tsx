@@ -24,7 +24,7 @@ export default async function ProjectsOnHome() {
    */}
 
   return (<>
-        <Projects projects={project} />
+        <Projects projects={project || []} services={[]} />
         <AllProjectsLink/>
     </>);
 }

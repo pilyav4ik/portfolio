@@ -18,7 +18,6 @@
 
 html,
 body {
-  overflow-x: hidden;
   height: 100%;
 }
 /* Hide scrollbar for Webkit-based browsers (Chrome, Safari) */
@@ -181,3 +180,9 @@ body {
   color: #333;
 
 } 
+
+.thumbnail{
+  width: 100vw;
+  height: 50vh;
+  background-color: aqua;
+}
