@@ -30,7 +30,7 @@ export default function index({ closeMenu }: any) {
       <div className="lg:flex lg:items-center">
                 <div id='contacts' className="grid lg:h-full content-between w-full lg:w-1/2 lg:mx-6">
                   <h1 className="text-2xl font-semibold text-white capitalize dark:text-white lg:text-3xl">
-                    How can we help you?<br />
+                    How can I help you?<br />
                   </h1>
 
                   <div className="text-left inline-grid content-start text-2xl" itemScope itemType="http://schema.org/Organization">

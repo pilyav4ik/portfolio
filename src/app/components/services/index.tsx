@@ -65,7 +65,7 @@ export default function Services() {
       <div className="py-16 md:py-24 lg:py-48">
       <div className="px-18 py-9 text-center">
         <span className='text-5xl'>
-          Here's what we can offer you
+          Here's what I can offer you
         </span>
       </div>
       {faqs.map((faq, index) => (
