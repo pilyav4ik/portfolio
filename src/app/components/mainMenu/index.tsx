@@ -18,7 +18,7 @@ const menu = [
   },
   {
     title: "About",
-    url: "#",
+    url: "/about",
     description: "Who are we",
     images: ['contact2.jpg', 'c2.jpg']
   }

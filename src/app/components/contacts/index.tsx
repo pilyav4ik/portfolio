@@ -53,19 +53,19 @@ export default function Contacts({ openMenu }: any) {
                         </motion.div>
                     </div>
                     <div className={styles.nav}>
-                        <a href="tel:+491763972959">
+                        <a href="tel:+4917639729599">
                             <Rounded>
-                                <p>+49 17 63 97 29 59</p>
+                                <p>+49 17 63 97 29 599</p>
                             </Rounded>
                         </a>
-                        <a href="https://wa.me/491763972959" target='_blank'>
+                        <a href="https://wa.me/4917639729599" target='_blank'>
                             <Rounded>
                                 <p>WhatsApp</p>
                             </Rounded>
                         </a>
-                        <a href="mailto:info.sviplab@gmail.com" target='_blank'>
+                        <a href="mailto:ipiliavskyi@gmail.com" target='_blank'>
                         <Rounded>
-                            <p>info.sviplab@gmail.com</p>
+                            <p>ipiliavskyi@gmail.com</p>
                             </Rounded>
                         </a>
                     </div>
@@ -73,7 +73,7 @@ export default function Contacts({ openMenu }: any) {
                         <div>
                             <span>
                                 <h3></h3>
-                                <p>{currentYear} © Sviplab</p>
+                                <p>{currentYear} ©ipiliavskyi</p>
                             </span>
                             <span>
                                 <h3></h3>
@@ -83,7 +83,6 @@ export default function Contacts({ openMenu }: any) {
                         <div>
                             <span>
                                 <h3>socials</h3>
-                                <p>Awwwards</p>
                             </span>
                             <p><Link href={"https://www.instagram.com/sviplab.team/"}>Instagram</Link></p>
                            
