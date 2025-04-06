@@ -2,6 +2,8 @@
 
 import { Oswald } from "next/font/google";
 import Image from "next/image";
+import Modal from "../modal";
+import { useState } from "react";
 
 // Загрузка шрифта на уровне модуля
 const oswald = Oswald({ subsets: ['latin'] });
@@ -17,6 +19,9 @@ type Props = {
 };
 
 export default function ImageGallery({ images }: Props) {
+
+  const [modal, setModal] = useState({ active: false, index: 0 });
+  
   if (!Array.isArray(images) || images.length === 0) {
     return <p>No images available</p>;
   }
@@ -26,7 +31,7 @@ export default function ImageGallery({ images }: Props) {
       {images.map((img, index) =>
         img.url ? (
           <div key={index} className="w-full flex flex-col sm:flex-row">
-            <div className="p-2 md:p-5 w-full sm:w-1/2">
+            <div className="p-2 md:p-5 w-full sm:w-1/2 cursor-none" onMouseEnter={() => { setModal({ active: true, index }) }} onMouseLeave={() => { setModal({ active: false, index }) }}>
               <Image
                 src={img.url}
                 alt={`Project image ${index + 1}`}
@@ -42,6 +47,9 @@ export default function ImageGallery({ images }: Props) {
             >
               {img.text}
             </div>
+
+            <Modal modal={modal} projects={images} title={"View"}/>
+            
           </div>
         ) : null
       )}

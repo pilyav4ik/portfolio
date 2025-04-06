@@ -12,7 +12,7 @@ const scaleAnimation = {
     closed: {scale: 0, x:"-50%", y:"-50%", transition: {duration: 0.4, ease: [0.32, 0, 0.67, 0]}}
 }
 
-export default function index({modal, projects}: any) {
+export default function index({modal, projects, title}: any) {
 
   const { active, index } = modal;
   const modalContainer = useRef(null);
@@ -54,7 +54,7 @@ export default function index({modal, projects}: any) {
             </div>
         </motion.div>
         <motion.div ref={cursor} className={styles.cursor} variants={scaleAnimation} initial="initial" animate={active ? "enter" : "closed"}></motion.div>
-        <motion.div ref={cursorLabel} className={styles.cursorLabel} variants={scaleAnimation} initial="initial" animate={active ? "enter" : "closed"}>View</motion.div>
+        <motion.div ref={cursorLabel} className={styles.cursorLabel} variants={scaleAnimation} initial="initial" animate={active ? "enter" : "closed"}>{title}</motion.div>
     </>
   )
 }

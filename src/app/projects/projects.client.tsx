@@ -68,7 +68,7 @@ export default function Projects({ projects, services }: ProjectsProps) {
 
 
         </div>
-      <Modal modal={modal} projects={projects} />
+      <Modal modal={modal} projects={projects} title={"View"} />
     </main>
   );
 }
