@@ -19,18 +19,22 @@ export default function index({modal, projects, title}: any) {
   const cursor = useRef(null);
   const cursorLabel = useRef(null);
 
-  useEffect( () => {
-    //Move Container
-    let xMoveContainer = gsap.quickTo(modalContainer.current, "left", {duration: 0.8, ease: "power3"})
-    let yMoveContainer = gsap.quickTo(modalContainer.current, "top", {duration: 0.8, ease: "power3"})
-    //Move cursor
-    let xMoveCursor = gsap.quickTo(cursor.current, "left", {duration: 0.5, ease: "power3"})
-    let yMoveCursor = gsap.quickTo(cursor.current, "top", {duration: 0.5, ease: "power3"})
-    //Move cursor label
-    let xMoveCursorLabel = gsap.quickTo(cursorLabel.current, "left", {duration: 0.45, ease: "power3"})
-    let yMoveCursorLabel = gsap.quickTo(cursorLabel.current, "top", {duration: 0.45, ease: "power3"})
+  useEffect(() => {
+    if (!modalContainer.current || !cursor.current || !cursorLabel.current) return;
 
-    window.addEventListener('mousemove', (e) => {
+    //Move Container
+    const xMoveContainer = gsap.quickTo(modalContainer.current, "left", {duration: 0.8, ease: "power3"})
+    const yMoveContainer = gsap.quickTo(modalContainer.current, "top", {duration: 0.8, ease: "power3"})
+    
+    //Move cursor
+    const xMoveCursor = gsap.quickTo(cursor.current, "left", {duration: 0.5, ease: "power3"})
+    const yMoveCursor = gsap.quickTo(cursor.current, "top", {duration: 0.5, ease: "power3"})
+    
+    //Move cursor label
+    const xMoveCursorLabel = gsap.quickTo(cursorLabel.current, "left", {duration: 0.45, ease: "power3"})
+    const yMoveCursorLabel = gsap.quickTo(cursorLabel.current, "top", {duration: 0.45, ease: "power3"})
+
+    const handleMouseMove = (e: MouseEvent) => {
       const { pageX, pageY } = e;
       xMoveContainer(pageX)
       yMoveContainer(pageY)
@@ -38,7 +42,15 @@ export default function index({modal, projects, title}: any) {
       yMoveCursor(pageY)
       xMoveCursorLabel(pageX)
       yMoveCursorLabel(pageY)
-    })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      // Kill all GSAP animations
+      gsap.killTweensOf([modalContainer.current, cursor.current, cursorLabel.current]);
+    }
   }, [])
 
   return (
