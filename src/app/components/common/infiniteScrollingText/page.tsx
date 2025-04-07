@@ -13,8 +13,10 @@ export default function InfiniteScrollingText({ text }: any) {
     let direction = -1;
 
     useEffect(() => {
+        if (!slider.current || !firstText.current || !secondText.current) return;
+
         gsap.registerPlugin(ScrollTrigger);
-        gsap.to(slider.current, {
+        const scrollTrigger = gsap.to(slider.current, {
             scrollTrigger: {
                 trigger: document.documentElement,
                 scrub: 0.25,
@@ -24,20 +26,31 @@ export default function InfiniteScrollingText({ text }: any) {
             },
             x: "-500px",
         });
-        requestAnimationFrame(animate);
-    }, []);
 
-    const animate = () => {
-        if (xPercent < -100) {
-            xPercent = 0;
-        } else if (xPercent > 0) {
-            xPercent = -100;
+        let animationFrame: number;
+        const animate = () => {
+            if (!firstText.current || !secondText.current) return;
+            
+            if (xPercent < -100) {
+                xPercent = 0;
+            } else if (xPercent > 0) {
+                xPercent = -100;
+            }
+            gsap.set(firstText.current, { xPercent: xPercent });
+            gsap.set(secondText.current, { xPercent: xPercent });
+            animationFrame = requestAnimationFrame(animate);
+            xPercent += 0.1 * direction;
         }
-        gsap.set(firstText.current, { xPercent: xPercent });
-        gsap.set(secondText.current, { xPercent: xPercent });
-        requestAnimationFrame(animate);
-        xPercent += 0.1 * direction;
-    }
+
+        animationFrame = requestAnimationFrame(animate);
+
+        return () => {
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+            scrollTrigger.kill();
+        };
+    }, []);
 
     return (
         <div className={styles.sliderContainer}>
